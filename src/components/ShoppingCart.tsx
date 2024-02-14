@@ -14,6 +14,7 @@ import { decreaseQuantity, increaseQuantity, removeItem } from '../store/reducer
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { ToastSuccess } from '../utils/toast';
 
 type Props = {
     open: boolean;
@@ -31,6 +32,7 @@ const ShoppingCard: React.FC<Props> = ({ open, onClose }) => {
 
     const onDeleteItem = (item: IProduct) => {
         appDispatch(removeItem({ productId: item.id }))
+        ToastSuccess('Ürün Sepetten Kaldırıldı')
     };
 
     const onIncItem = (item: IProduct) => {

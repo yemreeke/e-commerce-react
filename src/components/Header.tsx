@@ -47,10 +47,10 @@ const ScreenName: React.FC<Props> = (props) => {
                 <Toolbar>
                     <Typography variant="h6"
                         component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
+                        sx={{ flexGrow: 1, display: { sm: 'block' } }}>
                         E-TİCARET
                     </Typography>
-                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                    <Box sx={{ display: { sm: 'block' } }}>
                         <IconButton
                             onClick={handleOpenDrawer}
                             color="primary" aria-label="add to shopping cart">

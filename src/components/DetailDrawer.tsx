@@ -5,6 +5,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useAppDispatch } from '../store/store';
 import { addItem } from '../store/reducers/cartReducer';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { ToastSuccess } from '../utils/toast';
 
 type Props = {
     open: boolean;
@@ -18,6 +19,7 @@ const DetailDrawer: React.FC<Props> = ({ open, onClose, product }) => {
 
     const onAddCart = () => {
         appDispatch(addItem(product))
+        ToastSuccess('Sepete Eklendi');
     };
     return (
         <Drawer

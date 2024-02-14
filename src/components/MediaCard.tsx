@@ -9,19 +9,15 @@ import { useState } from 'react';
 import DetailDrawer from './DetailDrawer';
 import { useAppDispatch } from '../store/store';
 import { addItem } from '../store/reducers/cartReducer';
-import { toast } from 'react-toastify';
-
-
+import { ToastSuccess } from '../utils/toast';
 
 type Props = {
     item: IProduct
 }
-
 export default function MediaCard({ item }: Props) {
 
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<IProduct | undefined>(undefined);
-
 
     const handleOpenDrawer = (product: IProduct) => {
         setSelectedProduct(product);
@@ -35,18 +31,8 @@ export default function MediaCard({ item }: Props) {
 
     const onProductAdd = () => {
         appDispatch(addItem(item))
-        toast.success('Sepete Eklendi', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-        });
+        ToastSuccess('Sepete Eklendi');
     };
-
 
     return (
         <>
