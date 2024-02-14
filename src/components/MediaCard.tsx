@@ -36,9 +36,11 @@ export default function MediaCard(props: Props) {
                     sx={{ height: 300, padding: "1em 1em 0 1em", objectFit: "contain" }}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {props?.data?.name}
-                    </Typography>
+                    <div style={{ overflow: "hidden", textOverflow: "ellipsis", width: '100%', marginBottom: 5 }}>
+                        <Typography variant="h5" color="text.secondary" noWrap>
+                            {props?.data?.name}
+                        </Typography>
+                    </div>
                     <Typography variant="h6" color="text.primary">
                         {props?.data?.price} ₺
                     </Typography>
