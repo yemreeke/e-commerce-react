@@ -53,7 +53,7 @@ const ShoppingCard: React.FC<Props> = ({ open, onClose }) => {
     return (
         <Drawer
             anchor="right"
-            open={true}
+            open={open}
             onClose={onClose}
             PaperProps={{
                 sx: {

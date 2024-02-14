@@ -7,13 +7,15 @@ import Typography from '@mui/material/Typography';
 import { IProduct } from '../interface/product.interface';
 import { useState } from 'react';
 import DetailDrawer from './DetailDrawer';
+import { useAppDispatch } from '../store/store';
+import { addItem } from '../store/reducers/cartReducer';
 
 
 type Props = {
-    data: IProduct
+    item: IProduct
 }
 
-export default function MediaCard(props: Props) {
+export default function MediaCard({ item }: Props) {
 
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<IProduct | undefined>(undefined);
@@ -26,33 +28,38 @@ export default function MediaCard(props: Props) {
     const handleCloseDrawer = () => {
         setDrawerOpen(false);
     };
+    const appDispatch = useAppDispatch();
+
+    const onProductAdd = () => {
+        appDispatch(addItem(item))
+    };
 
     return (
         <>
             <Card raised sx={{ maxWidth: 345 }}>
                 <CardMedia
-                    image={props?.data?.image}
+                    image={item.image}
                     component="img"
                     sx={{ height: 300, padding: "1em 1em 0 1em", objectFit: "contain" }}
                 />
                 <CardContent>
                     <div style={{ overflow: "hidden", textOverflow: "ellipsis", width: '100%', marginBottom: 5 }}>
                         <Typography variant="h5" color="text.secondary" noWrap>
-                            {props?.data?.name}
+                            {item.name}
                         </Typography>
                     </div>
                     <Typography variant="h6" color="text.primary">
-                        {props?.data?.price} ₺
+                        {item.price} ₺
                     </Typography>
                     <div style={{ overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 2, width: '100%', height: 45, marginTop: 5 }}>
                         <Typography variant="body2" color="text.secondary">
-                            {props?.data?.description}
+                            {item.description}
                         </Typography>
                     </div>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" onClick={() => handleOpenDrawer(props.data)}>Detay</Button> {/* Detay butonuna tıklandığında detay çekmecesini açacak fonksiyonu çağırın */}
-                    <Button size="small">Sepete Ekle</Button>
+                    <Button size="small" onClick={() => handleOpenDrawer(item)}>Detay</Button> {/* Detay butonuna tıklandığında detay çekmecesini açacak fonksiyonu çağırın */}
+                    <Button size="small" onClick={onProductAdd} >Sepete Ekle</Button>
                 </CardActions>
             </Card>
             {

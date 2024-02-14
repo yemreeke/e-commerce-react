@@ -13,6 +13,7 @@ import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import ShoppingCart from './ShoppingCart';
 import { useState } from 'react';
+import { useAppSelector } from '../store/store';
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -26,7 +27,6 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 type Props = {
 
 }
-
 const ScreenName: React.FC<Props> = (props) => {
 
     const [cartOpen, setCartOpen] = useState(false);
@@ -39,6 +39,7 @@ const ScreenName: React.FC<Props> = (props) => {
         setCartOpen(false);
     };
 
+    const { items } = useAppSelector((state) => state.cart);
     return (
         <>
             <CssBaseline />
@@ -59,13 +60,12 @@ const ScreenName: React.FC<Props> = (props) => {
                         </IconButton>
                     </Box>
                 </Toolbar>
-            </AppBar>
+            </AppBar >
             <Toolbar id="back-to-top-anchor" />
             <Outlet />
             <ShoppingCart
                 open={cartOpen}
                 onClose={handleCloseDrawer}
-
             />
         </>
     )

@@ -2,6 +2,8 @@ import { Button, Drawer, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { IProduct } from '../interface/product.interface';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useAppDispatch } from '../store/store';
+import { addItem } from '../store/reducers/cartReducer';
 
 type Props = {
     open: boolean;
@@ -11,6 +13,11 @@ type Props = {
 
 const DetailDrawer: React.FC<Props> = ({ open, onClose, product }) => {
 
+    const appDispatch = useAppDispatch();
+
+    const onAddCart = () => {
+        appDispatch(addItem(product))
+    };
     return (
         <Drawer
             anchor="left"
@@ -44,7 +51,7 @@ const DetailDrawer: React.FC<Props> = ({ open, onClose, product }) => {
                     }}>
                         {product?.price} ₺
                     </Typography>
-                    <Button variant="outlined" startIcon={<ShoppingCartIcon />} sx={{ my: 3 }}>
+                    <Button onClick={onAddCart} variant="outlined" startIcon={<ShoppingCartIcon />} sx={{ my: 3 }}>
                         Sepete Ekle
                     </Button>
                     <Typography variant="body2" color="text.secondary">

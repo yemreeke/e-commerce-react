@@ -1,6 +1,7 @@
 
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import cartReducer from './reducers/cartReducer';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 // RootReducer oluşturulur
 const rootReducer = combineReducers({
@@ -14,4 +15,9 @@ const store = configureStore({
 
 // Store tipi tanımlanır
 export type RootState = ReturnType<typeof rootReducer>;
+export type AppDispatch = typeof store.dispatch;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+
 export default store;
+
