@@ -1,10 +1,15 @@
+yarn  
+yarn start  
+
 npx create-react-app my-app --template typescript  
 yarn add react-router-dom  
-yarn add @material-ui/core  
 yarn add @material-ui/icons  
-
-
-
+yarn add @mui/icons-material  
+yarn add @mui/material  
+yarn add @reduxjs/toolkit  
+yarn add react-toastify  
+yarn add react-redux  
+  
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
