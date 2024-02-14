@@ -1,4 +1,4 @@
 export const API_FetchProducts = () => {
-    return fetch('http://localhost:3001/products')
+    return fetch('http://192.168.31.38:3001/products')
         .then(res => res.json())
 };
