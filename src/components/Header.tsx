@@ -11,6 +11,8 @@ import { Box } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
+import ShoppingCart from './ShoppingCart';
+import { useState } from 'react';
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -26,6 +28,17 @@ type Props = {
 }
 
 const ScreenName: React.FC<Props> = (props) => {
+
+    const [cartOpen, setCartOpen] = useState(false);
+
+    const handleOpenDrawer = () => {
+        setCartOpen(true);
+    };
+
+    const handleCloseDrawer = () => {
+        setCartOpen(false);
+    };
+
     return (
         <>
             <CssBaseline />
@@ -37,7 +50,9 @@ const ScreenName: React.FC<Props> = (props) => {
                         E-TİCARET
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                        <IconButton color="primary" aria-label="add to shopping cart">
+                        <IconButton
+                            onClick={handleOpenDrawer}
+                            color="primary" aria-label="add to shopping cart">
                             <StyledBadge badgeContent={4} color="secondary">
                                 <ShoppingCartIcon sx={{ color: "#FFFFFF" }} />
                             </StyledBadge>
@@ -47,6 +62,11 @@ const ScreenName: React.FC<Props> = (props) => {
             </AppBar>
             <Toolbar id="back-to-top-anchor" />
             <Outlet />
+            <ShoppingCart
+                open={cartOpen}
+                onClose={handleCloseDrawer}
+
+            />
         </>
     )
 }
