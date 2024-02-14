@@ -218,9 +218,9 @@ interface Props {
 const HomePage: FC<Props> = (props) => {
 
   return (
-    <Container maxWidth="xl" sx={{ pt: 5 }}>
-      <Grid container sx={{ flexGrow: 1, }} >
-        <Grid container item spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} >
+    <Container maxWidth="xl" sx={{ py: 5 }}>
+      <Grid container sx={{ flexGrow: 1 }} >
+        <Grid container item spacing={{ xs: 2, md: 5 }} columns={{ xs: 4, sm: 8, md: 12 }} >
           {
             data?.map((item: IProduct, index) => (
               <Grid item xs={4}>
