@@ -1,4 +1,4 @@
-import { Drawer, Icon, Stack, Typography, } from '@mui/material';
+import { Drawer, Stack, Typography, } from '@mui/material';
 import React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -6,9 +6,11 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { useAppSelector } from '../store/store';
+import { useAppDispatch, useAppSelector } from '../store/store';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { IProduct } from '../interface/product.interface';
+import { decreaseQuantity, increaseQuantity, removeItem } from '../store/reducers/cartReducer';
 
 type Props = {
     open: boolean;
@@ -22,6 +24,18 @@ function ccyFormat(num: number) {
 
 const ShoppingCard: React.FC<Props> = ({ open, onClose }) => {
     const { items, totalPrice, totalQuantity } = useAppSelector((state) => state.cart);
+    const appDispatch = useAppDispatch();
+
+    const onDeleteItem = (item: IProduct) => {
+        appDispatch(removeItem({ productId: item.id }))
+    };
+
+    const onIncItem = (item: IProduct) => {
+        appDispatch(increaseQuantity({ productId: item.id }))
+    };
+    const onDecItem = (item: IProduct) => {
+        appDispatch(decreaseQuantity({ productId: item.id }))
+    }
     return (
         <Drawer
             anchor="right"
@@ -63,7 +77,7 @@ const ShoppingCard: React.FC<Props> = ({ open, onClose }) => {
                                         <TableCell align="right">{item.quantity}</TableCell>
                                         <TableCell align="right">{ccyFormat(item.product.price * item.quantity)}</TableCell>
                                         <TableCell >
-                                            <IconButton aria-label="delete" size="medium" color="error">
+                                            <IconButton aria-label="delete" size="medium" color="error" onClick={() => onDeleteItem(item.product)}>
                                                 <DeleteIcon fontSize="inherit" />
                                             </IconButton>
                                         </TableCell>
