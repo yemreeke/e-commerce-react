@@ -1,7 +1,7 @@
-npx create-react-app my-app --template typescript
-yarn add react-router-dom
-yarn add @material-ui/core
-yarn add @material-ui/icons
+npx create-react-app my-app --template typescript  
+yarn add react-router-dom  
+yarn add @material-ui/core  
+yarn add @material-ui/icons  
 
 
 
