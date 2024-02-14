@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react"
-import { Container, Grid, Stack } from "@mui/material";
+import { Box, Container, Grid, Stack } from "@mui/material";
 import MediaCard from "../components/MediaCard";
 import { IProduct } from "../interface/product.interface";
 import { API_FetchProducts } from "../api";
@@ -36,7 +36,16 @@ const HomePage: FC<Props> = (props) => {
                 </Grid>
               ))
               :
-              <CircularProgress size={100} />
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                }}
+              >
+                <CircularProgress size={100} />
+              </Box>
           }
         </Grid>
       </Grid>
