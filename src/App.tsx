@@ -6,6 +6,8 @@ import Cart from './screens/Cart';
 import Header from './components/Header';
 import { Provider } from 'react-redux';
 import store from './store/store';
+import { ToastContainer } from 'react-toastify';
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
           </Route>
         </Routes>
       </Router>
+      <ToastContainer />
     </Provider>
 
   );

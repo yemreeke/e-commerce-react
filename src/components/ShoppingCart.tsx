@@ -11,6 +11,9 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { IProduct } from '../interface/product.interface';
 import { decreaseQuantity, increaseQuantity, removeItem } from '../store/reducers/cartReducer';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 type Props = {
     open: boolean;
@@ -50,6 +53,14 @@ const ShoppingCard: React.FC<Props> = ({ open, onClose }) => {
         >
             <div style={{ width: "100%" }}>
                 <Stack mt={5}>
+                    <IconButton aria-label="delete" size="large" color="primary" onClick={onClose} sx={{
+                        position: "absolute",
+                        top: 10,
+                        left: 10
+
+                    }}>
+                        <CloseOutlinedIcon fontSize="inherit" />
+                    </IconButton>
                     <Typography variant="h5" color="text.primary" textAlign={"center"} mb={5}>
                         {`Sepetiniz (${items.length} Ürün)`}
                     </Typography>
@@ -74,7 +85,18 @@ const ShoppingCard: React.FC<Props> = ({ open, onClose }) => {
                                             </Stack>
                                         </TableCell>
                                         <TableCell align="right">{item.product.price}</TableCell>
-                                        <TableCell align="right">{item.quantity}</TableCell>
+                                        <TableCell align="right">
+                                            <Stack direction={"row"} alignItems={"center"} justifyContent={"flex-end"} >
+                                                <IconButton size="medium" color="primary" onClick={() => onDecItem(item.product)}>
+                                                    <RemoveCircleOutlineOutlinedIcon fontSize="inherit" />
+                                                </IconButton>
+                                                {item.quantity}
+                                                <IconButton size="medium" color="primary" onClick={() => onIncItem(item.product)}>
+                                                    <AddCircleOutlineOutlinedIcon fontSize="inherit" />
+
+                                                </IconButton>
+                                            </Stack>
+                                        </TableCell>
                                         <TableCell align="right">{ccyFormat(item.product.price * item.quantity)}</TableCell>
                                         <TableCell >
                                             <IconButton aria-label="delete" size="medium" color="error" onClick={() => onDeleteItem(item.product)}>

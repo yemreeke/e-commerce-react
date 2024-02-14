@@ -1,9 +1,10 @@
-import { Button, Drawer, Stack, Typography } from '@mui/material';
+import { Button, Drawer, IconButton, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { IProduct } from '../interface/product.interface';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useAppDispatch } from '../store/store';
 import { addItem } from '../store/reducers/cartReducer';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 type Props = {
     open: boolean;
@@ -25,12 +26,20 @@ const DetailDrawer: React.FC<Props> = ({ open, onClose, product }) => {
             onClose={onClose}
             PaperProps={{
                 sx: {
-                    width: "25%",
+                    width: "35%",
                     padding: 5
                 },
             }}
         >
             <div style={{ width: "100%", padding: 20 }}>
+                <IconButton aria-label="delete" size="large" color="primary" onClick={onClose} sx={{
+                    position: "absolute",
+                    top: 10,
+                    right: 10
+
+                }}>
+                    <CloseOutlinedIcon fontSize="inherit" />
+                </IconButton>
                 <img src={product.image} alt={product.name} width={"100%"} height={300} style={{
                     objectFit: "contain"
                 }} />
