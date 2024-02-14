@@ -54,7 +54,7 @@ const ScreenName: React.FC<Props> = (props) => {
                         <IconButton
                             onClick={handleOpenDrawer}
                             color="primary" aria-label="add to shopping cart">
-                            <StyledBadge badgeContent={4} color="secondary">
+                            <StyledBadge badgeContent={items.length} color="secondary">
                                 <ShoppingCartIcon sx={{ color: "#FFFFFF" }} />
                             </StyledBadge>
                         </IconButton>
